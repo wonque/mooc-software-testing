@@ -2,7 +2,7 @@ package tudelft.caesarshift;
 
 public class CaesarShiftCipher {
 
-    public String CaesarShiftCipher(String message, int shift){
+    public String process(String message, int shift){
         StringBuilder sb = new StringBuilder();
         char currentChar;
         int length = message.length();
