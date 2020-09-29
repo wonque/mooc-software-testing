@@ -8,7 +8,7 @@ public class RomanNumeral {
     private static Map<Character, Integer> map;
 
     static {
-        map = new HashMap<Character, Integer>();
+        map = new HashMap<>();
         map.put('I', 1);
         map.put('V', 5);
         map.put('X', 10);
@@ -19,13 +19,15 @@ public class RomanNumeral {
     }
 
     public int convert(String s) {
+        String copy = s.toUpperCase();
+        checkInputString(copy);
 
         int convertedNumber = 0;
-        for(int i = 0; i < s.length(); i++) {
-            int currentNumber = map.get(s.charAt(i));
-            int next = i+1 < s.length() ? map.get(s.charAt(i+1)) : 0;
+        for (int i = 0; i < copy.length(); i++) {
+            int currentNumber = map.get(copy.charAt(i));
+            int next = i + 1 < copy.length() ? map.get(copy.charAt(i + 1)) : 0;
 
-            if(currentNumber >= next)
+            if (currentNumber >= next)
                 convertedNumber += currentNumber;
             else
                 convertedNumber -= currentNumber;
@@ -33,5 +35,13 @@ public class RomanNumeral {
 
         return convertedNumber;
 
+    }
+
+    private void checkInputString(String s) {
+        for (int i = 0; i < s.length(); i++) {
+            if(!map.containsKey(s.charAt(i))){
+                throw new IllegalArgumentException("Please provide valid roman numeral string!");
+            }
+        }
     }
 }

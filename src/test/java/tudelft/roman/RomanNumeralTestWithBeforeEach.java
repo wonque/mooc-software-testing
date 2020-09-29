@@ -36,4 +36,9 @@ public class RomanNumeralTestWithBeforeEach {
         int result = roman.convert("XLIV");
         Assertions.assertEquals(44, result);
     }
+
+    @Test
+    public void stringWithInvalidCharacter() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> roman.convert("IAXLI"));
+    }
 }
