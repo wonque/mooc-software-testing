@@ -17,4 +17,28 @@ public class CountLettersTest {
         Assertions.assertEquals(1, words);
     }
 
+    @Test
+    public void testFirstWordEndsWithR() {
+        int words = new CountLetters().count("order|police");
+        Assertions.assertEquals(1, words);
+    }
+
+    @Test
+    public void testFirstWordWithRLastWithS() {
+        int words = new CountLetters().count("order|assumptions");
+        Assertions.assertEquals(2, words);
+    }
+
+    @Test
+    public void testFirstWordWithSLastWithR() {
+        int words = new CountLetters().count("assumptions|order");
+        Assertions.assertEquals(2, words);
+    }
+
+    @Test
+    public void testNotAWordsInput() {
+        int words = new CountLetters().count("*|%");
+        Assertions.assertEquals(0, words);
+    }
+
 }
