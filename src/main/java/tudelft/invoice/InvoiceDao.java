@@ -8,11 +8,12 @@ public class InvoiceDao {
 
     private static Connection c;
 
-    public void InvoiceDao() {
+    public InvoiceDao() {
         try {
-            if(c!=null) return;
+            if (c != null) return;
 
-            c = DriverManager.getConnection("jdbc:hsqldb:file:mymemdb.db", "SA", "");
+            c = DriverManager.getConnection("jdbc:hsqldb:file:D:\\Documents\\projects\\db", "SA", "");
+            dropInvoices();
             c.prepareStatement("create table invoice (name varchar(100), value double)").execute();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -28,7 +29,7 @@ public class InvoiceDao {
 
             ResultSet rs = ps.executeQuery();
 
-            while(rs.next()) {
+            while (rs.next()) {
                 String name = rs.getString("name");
                 double value = rs.getDouble("value");
                 allInvoices.add(new Invoice(name, value));
@@ -56,8 +57,19 @@ public class InvoiceDao {
         }
     }
 
-    public void close() {
+    private void dropInvoices() {
         try {
+            PreparedStatement ps = c.prepareStatement("DROP TABLE IF EXISTS invoice;");
+            ps.execute();
+            c.commit();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void clearAndClose() {
+        try {
+            dropInvoices();
             c.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);

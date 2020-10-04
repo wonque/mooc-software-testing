@@ -22,7 +22,7 @@ public class InvoiceFilterTest {
         Assertions.assertEquals(mauricio, result.get(0));
         Assertions.assertEquals(1, result.size());
 
-        dao.close();
+        dao.clearAndClose();
     }
 
 }
