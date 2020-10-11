@@ -4,7 +4,7 @@ import java.util.Calendar;
 
 public class ChristmasDiscountRefactored {
 
-    private Clock clock;
+    private final Clock clock;
 
     public ChristmasDiscountRefactored(Clock clock) {
         this.clock = clock;

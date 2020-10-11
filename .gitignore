@@ -75,4 +75,6 @@ fabric.properties
 target/
 *.class
 
+.classpath
+
 # End of https://www.gitignore.io/api/intellij
